@@ -198,27 +198,27 @@ generate_base_names() {
     base_names_ordered=()
 
     # Add custom filenames in desired order
-    base_names_ordered+=("$domain_name")                          # e.g., nour
-    base_names_ordered+=("${domain_name}_${tld//_/}")             # e.g., nour_netsa
+    base_names_ordered+=("$domain_name")                          # e.g., example
+    base_names_ordered+=("${domain_name}_${tld//_/}")             # e.g., example_netsa
 
     # Time-based filename generation (YYYYMM, YYYY_MM, etc.)
     if [ "$time_based_search" -eq 1 ]; then
         if [ -n "$year" ]; then
-            base_names_ordered+=("${domain_name}_${year}${month}") # e.g., nour_202309
-            base_names_ordered+=("${domain_name}_${year}_${month}") # e.g., nour_2023_09
+            base_names_ordered+=("${domain_name}_${year}${month}") # e.g., example_202309
+            base_names_ordered+=("${domain_name}_${year}_${month}") # e.g., example_2023_09
         fi
     fi
 
     # Generate the rest of the filenames (keeping only one logic for similar entries)
-    base_names_dict["$domain_name"]=1                             # e.g., nour
-    base_names_dict["${domain_name}_${tld}"]=1                    # e.g., nour_net_sa
-    base_names_dict["${domain_name}_${domain_name}"]=1            # e.g., nour_nour
-    base_names_dict["${domain_name}-${tld//_/}"]=1                # e.g., nour-netsa
-    base_names_dict["${domain_name}_${domain_name}_backup"]=1     # e.g., nour_nour_backup
-    base_names_dict["backup_${domain_name}"]=1                    # e.g., backup_nour
-    base_names_dict["backup-${domain_name}-${tld//_/}"]=1         # e.g., backup-nour-netsa
-    base_names_dict["${domain_name}_database"]=1                  # e.g., nour_database
-    base_names_dict["${domain_name}_dump"]=1                      # e.g., nour_dump
+    base_names_dict["$domain_name"]=1                             # e.g., example
+    base_names_dict["${domain_name}_${tld}"]=1                    # e.g., example_net_sa
+    base_names_dict["${domain_name}_${domain_name}"]=1            # e.g., example_example
+    base_names_dict["${domain_name}-${tld//_/}"]=1                # e.g., example-netsa
+    base_names_dict["${domain_name}_${domain_name}_backup"]=1     # e.g., example_example_backup
+    base_names_dict["backup_${domain_name}"]=1                    # e.g., backup_example
+    base_names_dict["backup-${domain_name}-${tld//_/}"]=1         # e.g., backup-example-netsa
+    base_names_dict["${domain_name}_database"]=1                  # e.g., example_database
+    base_names_dict["${domain_name}_dump"]=1                      # e.g., example_dump
 
     # Read additional filenames from wordlist
     if [[ -f "$filenames_wordlist" ]]; then
